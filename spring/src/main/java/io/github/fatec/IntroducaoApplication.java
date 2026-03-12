@@ -1,17 +1,18 @@
 package io.github.fatec;
 
-import io.github.fatec.integration.EnderecoIntegration;
-import io.github.fatec.integration.EnderecoIntegrationImpl;
+import io.github.fatec.integration.externo.EnderecoComFeign;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients
 public class IntroducaoApplication implements CommandLineRunner {
-    private final EnderecoIntegration enderecoIntegration;
+    public final EnderecoComFeign client;
 
-    public IntroducaoApplication(EnderecoIntegration enderecoIntegration) {
-        this.enderecoIntegration = enderecoIntegration;
+    public IntroducaoApplication(EnderecoComFeign client) {
+        this.client = client;
     }
 
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class IntroducaoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        enderecoIntegration.buscaCep("1234");
+        String s = client.buscaEndereco("01001000");
+        System.out.println("Retorno: " + s);
     }
-
 }

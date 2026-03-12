@@ -6,3 +6,10 @@ spring:
     mongodb:
       auto-index-creation: true
       uri: mongodb://localhost:27017/fatec
+#  cloud:
+#    openfeign:
+#      httpclient:
+#        hc5:
+#          enable: false
+#        okhttp:
+#          enable: true
